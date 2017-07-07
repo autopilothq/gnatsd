@@ -51,6 +51,7 @@ Cluster Options:
         --cluster <cluster-url>      Cluster URL for solicited routes
         --no_advertise <bool>        Advertise known cluster IPs to clients
         --connect_retries <number>   For implicit routes, number of connect retries
+        --trust_remotes <bool>       Use configured remote addresses, not remote socket addresses
 
 
 Common Options:
@@ -117,6 +118,7 @@ func main() {
 	flag.StringVar(&opts.Cluster.ListenStr, "cluster_listen", "", "Cluster url from which members can solicit routes.")
 	flag.BoolVar(&opts.Cluster.NoAdvertise, "no_advertise", false, "Advertise known cluster IPs to clients.")
 	flag.IntVar(&opts.Cluster.ConnectRetries, "connect_retries", 0, "For implicit routes, number of connect retries")
+	flag.BoolVar(&opts.Cluster.TrustRemotes, "trust_remotes", false, "Use configured remote addresses, not remote socket addresses")
 	flag.BoolVar(&showTLSHelp, "help_tls", false, "TLS help.")
 	flag.BoolVar(&opts.TLS, "tls", false, "Enable TLS.")
 	flag.BoolVar(&opts.TLSVerify, "tlsverify", false, "Enable TLS with client verification.")
