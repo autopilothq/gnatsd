@@ -144,12 +144,18 @@ func (c *client) processRouteInfo(info *Info) {
 		if sendInfo {
 			// Need to get the remote IP address.
 			c.mu.Lock()
-			switch conn := c.nc.(type) {
-			case *net.TCPConn, *tls.Conn:
-				addr := conn.RemoteAddr().(*net.TCPAddr)
-				info.IP = fmt.Sprintf("nats-route://%s/", net.JoinHostPort(addr.IP.String(), strconv.Itoa(info.Port)))
-			default:
-				info.IP = c.route.url.String()
+			// Snapshot server options.
+			opts := s.getOpts()
+			if opts.Cluster.TrustRemotes {
+				info.IP = fmt.Sprintf("nats-route://%s/", net.JoinHostPort(info.Host, strconv.Itoa(info.Port)))
+			} else {
+				switch conn := c.nc.(type) {
+				case *net.TCPConn, *tls.Conn:
+					addr := conn.RemoteAddr().(*net.TCPAddr)
+					info.IP = fmt.Sprintf("nats-route://%s/", net.JoinHostPort(addr.IP.String(), strconv.Itoa(info.Port)))
+				default:
+					info.IP = c.route.url.String()
+				}
 			}
 			c.mu.Unlock()
 			// Now let the known servers know about this new route

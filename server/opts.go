@@ -30,6 +30,7 @@ type ClusterOpts struct {
 	ListenStr      string      `json:"-"`
 	NoAdvertise    bool        `json:"-"`
 	ConnectRetries int         `json:"-"`
+	TrustRemotes   bool        `json:"-"`
 }
 
 // Options block for gnatsd server.
