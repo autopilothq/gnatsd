@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nats-io/gnatsd/server"
+	"github.com/autopilothq/gnatsd/server"
 )
 
 const natsServerExe = "../gnatsd"
