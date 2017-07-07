@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nats-io/gnatsd/server"
+	"github.com/autopilothq/gnatsd/server"
 )
 
 const PERF_PORT = 8422

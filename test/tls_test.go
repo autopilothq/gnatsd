@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nats-io/gnatsd/server"
+	"github.com/autopilothq/gnatsd/server"
 	"github.com/nats-io/go-nats"
 )
 
