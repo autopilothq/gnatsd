@@ -366,6 +366,8 @@ func parseCluster(cm map[string]interface{}, opts *Options) error {
 			opts.Cluster.NoAdvertise = mv.(bool)
 		case "connect_retries":
 			opts.Cluster.ConnectRetries = int(mv.(int64))
+		case "trust_remotes":
+			opts.Cluster.TrustRemotes = mv.(bool)
 		}
 	}
 	return nil
